@@ -7,13 +7,9 @@ php:
   - hhvm
 
 before_script:
-  - mkdir -p build/logs
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction --dev
 
 script:
-  - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - ./vendor/bin/phpunit 
   - ./vendor/bin/phpcs src --standard=psr2
-
-after_success:
-  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php vendor/bin/coveralls -v; fi;'
