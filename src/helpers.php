@@ -3,18 +3,18 @@
 if (!function_exists('uuid')) {
     function uuid()
     {
-        if (function_exists('com_create_guid')){
+        if (function_exists('com_create_guid')) {
             return com_create_guid();
-        }else{
+        } else {
             mt_srand((double)microtime()*10000);
             $charid = strtoupper(md5(uniqid(rand(), true)));
             $hyphen = chr(45);
             $uuid = chr(123)
                 .substr($charid, 0, 8).$hyphen
                 .substr($charid, 8, 4).$hyphen
-                .substr($charid,12, 4).$hyphen
-                .substr($charid,16, 4).$hyphen
-                .substr($charid,20,12)
+                .substr($charid, 12, 4).$hyphen
+                .substr($charid, 16, 4).$hyphen
+                .substr($charid, 20, 12)
                 .chr(125);
             return $uuid;
         }
@@ -29,11 +29,11 @@ if (!function_exists('is_cli')) {
      */
     function is_cli()
     {
-        if( defined('STDIN') ) {
+        if (defined('STDIN')) {
             return true;
         }
 
-        if( empty($_SERVER['REMOTE_ADDR']) and !isset($_SERVER['HTTP_USER_AGENT']) and count($_SERVER['argv']) > 0) {
+        if (empty($_SERVER['REMOTE_ADDR']) and !isset($_SERVER['HTTP_USER_AGENT']) and count($_SERVER['argv']) > 0) {
             return true;
         }
 
@@ -78,7 +78,7 @@ if (!function_exists('distance')) {
         $radLat2 = deg2rad($lat2);
         $a = $radLat1 - $radLat2;
         $b = deg2rad($lon1) - deg2rad($lon2);
-        $s = 2 * asin(sqrt(pow(sin($a/2),2) + cos($radLat1) * cos($radLat2) * pow(sin($b/2),2)));
+        $s = 2 * asin(sqrt(pow(sin($a/2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b/2), 2)));
         $s = $s *$EARTH_RADIUS;
         $s = round($s * 10000) / 10000;
         return $s;
@@ -177,7 +177,10 @@ if (!function_exists('is_mobile')) {
         if (!is_numeric($mobile)) {
             return false;
         }
-        return preg_match('#^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,1,3,6,7,8]{1}\d{8}$|^18[\d]{9}$#', $mobile) ? true : false;
+        return preg_match(
+            '#^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,1,3,6,7,8]{1}\d{8}$|^18[\d]{9}$#',
+            $mobile
+        ) ? true : false;
     }
 }
 
@@ -195,9 +198,7 @@ if (!function_exists('is_email')) {
     }
 }
 
-
 if (!function_exists('array_to_tree')) {
-
     /**
      * covert a array to tree
      * @param array $list
