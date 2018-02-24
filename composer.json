@@ -1,0 +1,39 @@
+
+{
+  "name": "tusimo/php-utility",
+  "description": "some php common library and class",
+  "keywords": ["php","functions","common","class"],
+  "homepage": "https://github.com/tusimo/php-utility",
+  "authors": [
+    {
+      "name": "tusimo",
+      "homepage": "https://github.com/tusimo/php-utility"
+    }
+  ],
+  "license" : "MIT",
+  "require": {
+    "illuminate/support": "5.6.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.5.0",
+    "squizlabs/php_codesniffer": "2.3.3",
+    "mockery/mockery": "0.9.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tusimo\\Utility\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tusimo\\Utility\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit && ./vendor/bin/phpcs src --standard=psr2 --report=diff --colors",
+    "phpcs": "./vendor/bin/phpcs src --standard=psr2 --report=diff --colors"
+  }
+}
