@@ -270,3 +270,17 @@ if (!function_exists('string_to_array')) {
         return $item;
     }
 }
+
+if (!function_exists('integer_disassemble')) {
+    function integer_disassemble ($integer)
+    {
+        $result = [];
+        if (!is_integer($integer) || $integer <= 0) {
+            return $result;
+        }
+        foreach (array_reverse(str_split(decbin($integer))) as $key => $item) {
+            $item && $result[] = pow(2, $key);
+        }
+        return $result;
+    }
+}
