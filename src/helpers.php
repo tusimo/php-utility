@@ -272,7 +272,12 @@ if (!function_exists('string_to_array')) {
 }
 
 if (!function_exists('integer_disassemble')) {
-    function integer_disassemble ($integer)
+    /**
+     * 拆分整数为2的幂的数的组合 3=1+2,7=1+2+4
+     * @param $integer
+     * @return array
+     */
+    function integer_disassemble($integer)
     {
         $result = [];
         if (!is_integer($integer) || $integer <= 0) {

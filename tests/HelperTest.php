@@ -100,6 +100,29 @@ class HelperTest extends PHPUnit_Framework_TestCase
         $email = 'test@google.com';
         $this->assertEquals(true, is_email($email));
     }
+
+    /**
+     * @test
+     */
+    function testIntegerDisassemble()
+    {
+        $integer = 7;
+        $this->assertEquals([1,2,4], integer_disassemble($integer)
+        );
+    }
+
+    /**
+     * @test
+     */
+    function testStringToArray()
+    {
+        $targetArray = range(1,5);
+        $string = join(',', $targetArray);
+        $this->assertEquals($targetArray, string_to_array($string));
+        $this->assertEquals(array_map(function($value) {
+            return $value;
+        }, $targetArray), string_to_array($string, ',', 'strval'));
+    }
 }
 
 class ConstantsClass {
